@@ -58,7 +58,7 @@ html.micro-activity body {
 
 /* ===== SECTION LABEL ===== */
 .section-label {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -69,21 +69,21 @@ html.micro-activity body {
 
 /* ===== HEADINGS ===== */
 h1 {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 22px;
   font-weight: 600;
   color: var(--primary);
   margin-bottom: 8px;
 }
 h2 {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 18px;
   color: var(--primary);
   margin: 0 0 16px;
   font-weight: 600;
 }
 h3 {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 15px;
   color: var(--primary);
   margin-bottom: 8px;
