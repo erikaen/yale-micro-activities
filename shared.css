@@ -1,0 +1,385 @@
+/* ===== SHARED STYLES — Yale Micro Activities ===== */
+
+:root {
+  --primary: #00329d;
+  --primary-light: #286dc0;
+  --primary-faint: #f0f4f8;
+  --accent: #bd5319;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #2a2a2a;
+  background: #e6e9f2;
+  line-height: 1.7;
+}
+
+/* ===== ACTIVITY WRAPPER ===== */
+/* Use this on the outermost element so the activity fills the iframe */
+html.micro-activity,
+html.micro-activity body {
+  height: 100%;
+  margin: 0;
+}
+html.micro-activity body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f5f7fb;
+}
+
+/* ===== TOP IDENTITY BAR ===== */
+.identity-bar {
+  background: var(--primary);
+  color: white;
+  border-radius: 0 0 6px 6px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ===== CONTENT AREA ===== */
+.activity-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  color: var(--primary);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+h3 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* ===== PROSE ===== */
+.prose {
+  margin-bottom: 16px;
+  font-size: 15.5px;
+}
+p {
+  margin-bottom: 14px;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 32px 0;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.card:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+  background: var(--primary-faint);
+  border-radius: 5px;
+  padding: 18px 22px;
+  margin: 14px 0;
+  border: 1px solid #dce4ee;
+}
+.info-box h3 {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.info-box p {
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ===== QUESTION / PROMPT BOX ===== */
+.prompt-box {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 20px;
+  margin: 20px 0;
+  font-size: 16px;
+}
+.prompt-box .prompt-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* ===== ACCORDION ===== */
+.accordion {
+  margin: 24px 0;
+}
+.accordion-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: white;
+  overflow: hidden;
+}
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: left;
+  transition: background 0.15s;
+}
+.accordion-trigger:hover {
+  background: var(--primary-faint);
+}
+.accordion-trigger .section-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-light);
+  flex-shrink: 0;
+}
+.accordion-section.active .accordion-trigger .section-num {
+  background: var(--accent);
+  color: white;
+}
+.accordion-trigger .chevron {
+  margin-left: auto;
+  font-size: 11px;
+  color: #aaa;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.accordion-section.open .accordion-trigger .chevron {
+  transform: rotate(90deg);
+}
+.accordion-body {
+  display: none;
+  padding: 4px 18px 20px;
+  font-size: 15.5px;
+}
+.accordion-section.open .accordion-body {
+  display: block;
+}
+.accordion-body p {
+  margin-bottom: 14px;
+}
+.accordion-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== REVEAL (show/hide answer) ===== */
+.reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 18px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin: 12px 0;
+}
+.reveal-btn:hover {
+  background: var(--primary-light);
+}
+.reveal-content {
+  display: none;
+  margin-top: 14px;
+  padding: 16px 20px;
+  background: var(--primary-faint);
+  border-radius: 6px;
+  border: 1px solid #dce4ee;
+  font-size: 15.5px;
+}
+.reveal-content.open {
+  display: block;
+}
+
+/* ===== CHOICE / MCQ ===== */
+.choice-list {
+  list-style: none;
+  margin: 14px 0;
+}
+.choice-list li {
+  margin-bottom: 8px;
+}
+.choice-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.choice-btn:hover {
+  border-color: var(--primary-light);
+  background: var(--primary-faint);
+}
+.choice-btn.correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  color: #15803d;
+}
+.choice-btn.incorrect {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ===== FEEDBACK STRIP ===== */
+.feedback {
+  display: none;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d;
+}
+.feedback.incorrect {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+}
+
+/* ===== INSTANCE-CHOICE FLAG ===== */
+.instance-flag {
+  display: inline-block;
+  background: #fff3e8;
+  border: 1px solid #f0d4b8;
+  border-radius: 3px;
+  padding: 1px 7px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* ===== NEXT / SUBMIT BUTTON ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 11px 22px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: var(--primary-faint); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .activity-content { padding: 16px 14px 48px; }
+  h1 { font-size: 18px; }
+  .card { padding: 16px 16px; }
+}
