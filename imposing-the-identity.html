@@ -6,7 +6,7 @@
 <title>Imposing the Identity — Yale Micro Activity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
   html.micro-activity body { background: #e6e9f2; }
@@ -123,7 +123,6 @@
     margin-top: auto;
   }
   .flip-card-back p {
-    font-size: 13.5px;
     line-height: 1.65;
     color: #374151;
     margin-bottom: 0;
@@ -146,6 +145,15 @@
     margin-top: 10px;
   }
 
+  /* ===== CONTAINER FONT OVERRIDES ===== */
+  .eq-display, .flip-card-front, .flip-card-back,
+  .insight-box, .org-card, .dnd-bank, .dnd-zone, .dnd-card {
+    font-family: Inter, system-ui, sans-serif;
+  }
+  .insight-box p, .flip-card-back p {
+    font-size: 16px;
+  }
+
   /* ===== INSIGHT BOX ===== */
   .insight-box {
     background: #eff6ff;
@@ -164,7 +172,7 @@
     color: #1d4ed8;
     margin-bottom: 5px;
   }
-  .insight-box p { font-size: 14.5px; color: #1e3a8a; margin-bottom: 0; }
+  .insight-box p { color: #1e3a8a; margin-bottom: 0; }
 
   /* ===== ORG COMPARISON ===== */
   .org-compare {
