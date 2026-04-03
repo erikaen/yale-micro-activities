@@ -52,7 +52,7 @@
     font-style: italic;
   }
 
-  /* ===== DEFINITION GRID ===== */
+  /* ===== DEFINITION FLIP CARDS ===== */
   .def-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -61,15 +61,48 @@
   }
   @media (max-width: 700px) { .def-grid { grid-template-columns: 1fr; } }
 
-  .def-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
+  .flip-card {
+    perspective: 1000px;
+    height: 220px;
+    cursor: pointer;
   }
-  .def-card.a { border-top: 4px solid #38bdf8; }
-  .def-card.l { border-top: 4px solid #3b82f6; }
-  .def-card.e { border-top: 4px solid #1e40af; }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .flip-card-back {
+    transform: rotateY(180deg);
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .flip-card.a .flip-card-front,
+  .flip-card.a .flip-card-back { border-top: 4px solid #38bdf8; }
+  .flip-card.l .flip-card-front,
+  .flip-card.l .flip-card-back { border-top: 4px solid #3b82f6; }
+  .flip-card.e .flip-card-front,
+  .flip-card.e .flip-card-back { border-top: 4px solid #1e40af; }
+
   .def-icon { font-size: 26px; margin-bottom: 10px; }
   .def-title {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -79,19 +112,44 @@
     letter-spacing: 0.5px;
     margin-bottom: 8px;
   }
-  .def-card.a .def-title { color: #0369a1; }
-  .def-card.l .def-title { color: #1d4ed8; }
-  .def-card.e .def-title { color: #1e3a8a; }
-  .def-card p { font-size: 14px; line-height: 1.6; color: #374151; margin-bottom: 8px; }
-  .def-card p:last-child { margin-bottom: 0; }
-  .def-example {
-    font-size: 12.5px;
-    color: #6b7280;
-    font-style: italic;
-    background: #f9fafb;
-    border-radius: 5px;
-    padding: 8px 10px;
-    margin-top: 8px;
+  .flip-card.a .def-title { color: #0369a1; }
+  .flip-card.l .def-title { color: #1d4ed8; }
+  .flip-card.e .def-title { color: #1e3a8a; }
+
+  .def-brief {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 12px;
+  }
+  .flip-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: auto;
+  }
+  .flip-card-back p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #374151;
+    margin-bottom: 0;
+  }
+  .flip-back-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .flip-card.a .flip-back-title { color: #0369a1; }
+  .flip-card.l .flip-back-title { color: #1d4ed8; }
+  .flip-card.e .flip-back-title { color: #1e3a8a; }
+  .flip-back-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 10px;
   }
 
   /* ===== INSIGHT BOX ===== */
@@ -393,21 +451,55 @@
   <h2>What Each Term Means</h2>
 
   <div class="def-grid">
-    <div class="def-card a">
-      <div class="def-icon">🏦</div>
-      <div class="def-title">Assets</div>
-      <p>Assets are present rights to economic benefits. Not physical things — rights. A building is an asset not because it is a physical structure but because the entity holds the right to use it, rent it, or sell it. Cash is an asset because it embodies the right to acquire other things. A receivable is an asset because it represents the right to collect cash from someone who owes it. No future benefit, no asset.</p>
+
+    <div class="flip-card a" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="def-icon">🏦</div>
+          <div class="def-title">Assets</div>
+          <div class="def-brief">Present <strong>rights</strong> to economic benefits — not physical things. No future benefit, no asset.</div>
+          <div class="flip-hint">Click to read more ›</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-back-title">Assets</div>
+          <p>Assets are present rights to economic benefits. Not physical things — rights. A building is an asset not because it is a physical structure but because the entity holds the right to use it, rent it, or sell it. Cash is an asset because it embodies the right to acquire other things. A receivable is an asset because it represents the right to collect cash from someone who owes it. No future benefit, no asset.</p>
+          <div class="flip-back-hint">Click to flip back ‹</div>
+        </div>
+      </div>
     </div>
-    <div class="def-card l">
-      <div class="def-icon">📋</div>
-      <div class="def-title">Liabilities</div>
-      <p>Liabilities are present obligations to transfer economic benefits. The entity owes something to someone and cannot avoid the transfer. A loan requires repayment. A payable means the entity received goods and has not yet paid. Wages earned by employees but not yet disbursed are a liability. The obligation must be compelling — not optional, not merely possible, but something the entity is required to fulfill.</p>
+
+    <div class="flip-card l" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="def-icon">📋</div>
+          <div class="def-title">Liabilities</div>
+          <div class="def-brief">Present <strong>obligations</strong> to transfer economic benefits — something the entity cannot avoid.</div>
+          <div class="flip-hint">Click to read more ›</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-back-title">Liabilities</div>
+          <p>Liabilities are present obligations to transfer economic benefits. The entity owes something to someone and cannot avoid the transfer. A loan requires repayment. A payable means the entity received goods and has not yet paid. Wages earned by employees but not yet disbursed are a liability. The obligation must be compelling — not optional, not merely possible, but something the entity is required to fulfill.</p>
+          <div class="flip-back-hint">Click to flip back ‹</div>
+        </div>
+      </div>
     </div>
-    <div class="def-card e">
-      <div class="def-icon">⚖️</div>
-      <div class="def-title">Equities / Net Assets</div>
-      <p>Equities are the difference: assets minus liabilities. Not an independent concept — a derived one. In a for-profit company, we call this difference equities and associate it with the owners' residual interest. But the number is entirely determined by how assets and liabilities were recorded. Change the conventions for recording assets or liabilities, and equities changes too — not because anything happened to the owners, but because the inputs to the subtraction changed.</p>
+
+    <div class="flip-card e" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="def-icon">⚖️</div>
+          <div class="def-title">Equities / Net Assets</div>
+          <div class="def-brief">The <strong>derived difference</strong>: assets minus liabilities. Not independent — entirely determined by the other two.</div>
+          <div class="flip-hint">Click to read more ›</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-back-title">Equities / Net Assets</div>
+          <p>Equities are the difference: assets minus liabilities. Not an independent concept — a derived one. In a for-profit company, we call this difference equities and associate it with the owners' residual interest. But the number is entirely determined by how assets and liabilities were recorded. Change the conventions for recording assets or liabilities, and equities changes too — not because anything happened to the owners, but because the inputs to the subtraction changed.</p>
+          <div class="flip-back-hint">Click to flip back ‹</div>
+        </div>
+      </div>
     </div>
+
   </div>
 
   <hr class="divider">
