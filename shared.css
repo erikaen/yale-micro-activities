@@ -52,8 +52,6 @@ html.micro-activity body {
 
 /* ===== CONTENT AREA ===== */
 .activity-content {
-  max-width: 720px;
-  margin: 0 auto;
   padding: 24px 20px 60px;
 }
 
@@ -379,7 +377,7 @@ p:last-child {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-  .activity-content { padding: 16px 14px 48px; }
+  .activity-content { padding: 16px 14px 48px; max-width: none; }
   h1 { font-size: 18px; }
   .card { padding: 16px 16px; }
 }
