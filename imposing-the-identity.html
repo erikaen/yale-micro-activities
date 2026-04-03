@@ -39,9 +39,9 @@
     font-weight: 700;
     min-width: 110px;
   }
-  .eq-term.a { background: #dbeafe; color: #1e40af; border: 2px solid #93c5fd; }
-  .eq-term.l { background: #e0e7ff; color: #3730a3; border: 2px solid #a5b4fc; }
-  .eq-term.e { background: #eff6ff; color: #1e3a8a; border: 2px solid #60a5fa; }
+  .eq-term.a { background: #e0f2fe; color: #0369a1; border: 2px solid #38bdf8; }
+  .eq-term.l { background: #dbeafe; color: #1d4ed8; border: 2px solid #3b82f6; }
+  .eq-term.e { background: #eff6ff; color: #1e3a8a; border: 2px solid #1e40af; }
   .eq-op { font-size: 22px; font-weight: 700; color: #6b7280; font-family: 'Helvetica Neue', Arial, sans-serif; }
   .eq-arrow { font-size: 20px; color: #9ca3af; margin: 6px 0; }
   .eq-caption {
@@ -67,8 +67,8 @@
     padding: 20px;
     border: 1px solid #e0e0e0;
   }
-  .def-card.a { border-top: 4px solid #3b82f6; }
-  .def-card.l { border-top: 4px solid #6366f1; }
+  .def-card.a { border-top: 4px solid #38bdf8; }
+  .def-card.l { border-top: 4px solid #3b82f6; }
   .def-card.e { border-top: 4px solid #1e40af; }
   .def-icon { font-size: 26px; margin-bottom: 10px; }
   .def-title {
@@ -79,8 +79,8 @@
     letter-spacing: 0.5px;
     margin-bottom: 8px;
   }
-  .def-card.a .def-title { color: #1e40af; }
-  .def-card.l .def-title { color: #3730a3; }
+  .def-card.a .def-title { color: #0369a1; }
+  .def-card.l .def-title { color: #1d4ed8; }
   .def-card.e .def-title { color: #1e3a8a; }
   .def-card p { font-size: 14px; line-height: 1.6; color: #374151; margin-bottom: 8px; }
   .def-card p:last-child { margin-bottom: 0; }
@@ -155,10 +155,10 @@
     font-weight: 600;
     font-family: 'Helvetica Neue', Arial, sans-serif;
   }
-  .pill.a  { background: #dbeafe; color: #1e40af; }
-  .pill.l  { background: #e0e7ff; color: #3730a3; }
+  .pill.a  { background: #e0f2fe; color: #0369a1; }
+  .pill.l  { background: #dbeafe; color: #1d4ed8; }
   .pill.e  { background: #eff6ff; color: #1e3a8a; }
-  .pill.na { background: #dbeafe; color: #1e3a8a; }
+  .pill.na { background: #eff6ff; color: #1e3a8a; }
   .pill-op { font-size: 16px; font-weight: 700; color: #6b7280; }
   .org-badge {
     display: inline-block;
@@ -178,11 +178,8 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 14px 16px;
     font-size: 14px;
+    padding: 4px 0;
   }
   .tx-num {
     width: 26px; height: 26px;
@@ -191,10 +188,9 @@
     font-weight: 700; font-size: 12px;
     flex-shrink: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #e0f2fe;
+    color: #0369a1;
   }
-  .tx-num.a { background: #dbeafe; color: #1e40af; }
-  .tx-num.l { background: #e0e7ff; color: #3730a3; }
-  .tx-num.e { background: #eff6ff; color: #1e3a8a; }
 
   /* ===== DRAG AND DROP ===== */
   .dnd-section { margin: 24px 0; }
@@ -264,12 +260,8 @@
     border: 2px dashed #d1d5db;
     transition: all 0.15s;
   }
-  .dnd-zone.z-assets  { border-color: #93c5fd; background: #f0f7ff; }
-  .dnd-zone.z-liab    { border-color: #a5b4fc; background: #f5f3ff; }
-  .dnd-zone.z-equity  { border-color: #60a5fa; background: #eff6ff; }
-  .dnd-zone.over.z-assets  { background: #dbeafe; border-color: #3b82f6; transform: scale(1.02); }
-  .dnd-zone.over.z-liab    { background: #e0e7ff; border-color: #6366f1; transform: scale(1.02); }
-  .dnd-zone.over.z-equity  { background: #dbeafe; border-color: #2563eb; transform: scale(1.02); }
+  .dnd-zone.z-assets, .dnd-zone.z-liab, .dnd-zone.z-equity { border-color: #93c5fd; background: #f0f7ff; }
+  .dnd-zone.over { background: #dbeafe; border-color: #00329d; transform: scale(1.02); }
 
   .zone-title {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -279,9 +271,7 @@
     letter-spacing: 0.5px;
     margin-bottom: 4px;
   }
-  .dnd-zone.z-assets  .zone-title { color: #1e40af; }
-  .dnd-zone.z-liab    .zone-title { color: #3730a3; }
-  .dnd-zone.z-equity  .zone-title { color: #1e3a8a; }
+  .zone-title { color: #00329d; }
 
   .zone-hint {
     font-size: 11px;
@@ -368,7 +358,7 @@
 
   <p class="prose">The first move is to impose a structural constraint on the system. Not discover one. Not derive one from economic theory. <strong>Impose one</strong> — a deliberate design choice, made because of what it makes possible.</p>
 
-  <p class="prose">The constraint is the accounting identity. Most textbooks write it this way:</p>
+  <p class="prose">The constraint is the accounting identity:</p>
 
   <!-- EQUATION VISUAL -->
   <div class="eq-display">
@@ -393,11 +383,13 @@
     <div class="eq-caption">Rearranged form — reveals that equities is <em>derived</em>, not independent</div>
   </div>
 
-  <p class="prose">Written the first way, it looks like three independent quantities that happen to balance — as though the identity were a surprising empirical fact, something you might test and find to be true. But the rearranged form reveals something the first form hides: <strong>equities is not an independent third quantity.</strong> It is the difference between assets and liabilities. Once you have recorded assets and liabilities, equities is determined. There is nothing else to decide.</p>
+  <p class="prose">This is the form you will encounter in most textbooks and most practice. It says: at any date, everything the entity has recorded as its resources (assets) equals everything it has recorded as obligations to outside parties (liabilities) plus a third category called equities. Written this way, it looks like three independent quantities that happen to balance — as though the identity were a surprising empirical fact, something you might test and find to be true.</p>
+
+  <p class="prose">But now rearrange it. Same algebra. But the rearranged form reveals something the first form hides: equities is not an independent third quantity. It is the difference between assets and liabilities. Once you have recorded assets and liabilities, equities is determined. There is nothing else to decide.</p>
 
   <div class="insight-box">
     <div class="insight-label">Key Insight</div>
-    <p>The identity is a tautology — true by definition, not by coincidence. That is exactly what makes it so powerful as a structural constraint.</p>
+    <p>The identity is a tautology — true by definition, not by coincidence. And that is exactly what makes it so powerful as a structural constraint.</p>
   </div>
 
   <hr class="divider">
@@ -408,23 +400,17 @@
     <div class="def-card a">
       <div class="def-icon">🏦</div>
       <div class="def-title">Assets</div>
-      <p>Present <strong>rights</strong> to economic benefits. Not physical things — rights.</p>
-      <p>A building is an asset because the entity holds the right to use, rent, or sell it. No future benefit — no asset.</p>
-      <div class="def-example">Cash · A building · A receivable (right to collect cash)</div>
+      <p>Assets are present rights to economic benefits. Not physical things — rights. A building is an asset not because it is a physical structure but because the entity holds the right to use it, rent it, or sell it. Cash is an asset because it embodies the right to acquire other things. A receivable is an asset because it represents the right to collect cash from someone who owes it. No future benefit, no asset.</p>
     </div>
     <div class="def-card l">
       <div class="def-icon">📋</div>
       <div class="def-title">Liabilities</div>
-      <p>Present <strong>obligations</strong> to transfer economic benefits. The entity owes something it cannot avoid.</p>
-      <p>The obligation must be compelling — not optional, not merely possible, but required.</p>
-      <div class="def-example">A bank loan · Unpaid wages · Goods received but not paid for</div>
+      <p>Liabilities are present obligations to transfer economic benefits. The entity owes something to someone and cannot avoid the transfer. A loan requires repayment. A payable means the entity received goods and has not yet paid. Wages earned by employees but not yet disbursed are a liability. The obligation must be compelling — not optional, not merely possible, but something the entity is required to fulfill.</p>
     </div>
     <div class="def-card e">
       <div class="def-icon">⚖️</div>
       <div class="def-title">Equities / Net Assets</div>
-      <p>The <strong>derived difference</strong>: assets minus liabilities. Not an independent concept.</p>
-      <p>Change conventions for recording assets or liabilities, and equities changes — not because anything happened to the owners.</p>
-      <div class="def-example">Owners' residual claim · Net assets (universities, hospitals)</div>
+      <p>Equities are the difference: assets minus liabilities. Not an independent concept — a derived one. In a for-profit company, we call this difference equities and associate it with the owners' residual interest. But the number is entirely determined by how assets and liabilities were recorded. Change the conventions for recording assets or liabilities, and equities changes too — not because anything happened to the owners, but because the inputs to the subtraction changed.</p>
     </div>
   </div>
 
@@ -432,7 +418,7 @@
 
   <h2>The Architecture Transfers</h2>
 
-  <p class="prose">Now consider what happens when the entity has no owners at all. A university, a hospital, a charitable foundation — these have assets and liabilities, but no shareholders. Does the identity break? No. Assets minus liabilities is still a difference. You just call it <strong>net assets</strong> instead of equities. The architecture does not change. Only the label does.</p>
+  <p class="prose">Now consider what happens when the entity has no owners at all. A university, a hospital, a charitable foundation — these organizations have assets and liabilities, but no shareholders. Does the identity break? No. Assets minus liabilities is still a difference. You just call it <strong>net assets</strong> instead of equities. The architecture does not change. The double-entry recording does not change. The decomposition into flow statements does not change. Everything transfers without modification — only the label on the difference is different.</p>
 
   <div class="org-compare">
     <div class="org-card">
@@ -465,13 +451,13 @@
     </div>
   </div>
 
-  <p class="prose">This is one of the strongest pieces of evidence that the identity is a genuinely powerful design choice. It is not specific to for-profit companies. It is not built around ownership. Moving from a corporation to a nonprofit only requires relabeling the difference — without touching anything else in the architecture.</p>
+  <p class="prose">This is one of the strongest pieces of evidence that the identity is a genuinely powerful design choice. It is not specific to for-profit companies. It is not built around ownership. It is a general-purpose structure for organizing financial information about any entity that has resources and obligations. The fact that you can move from a corporation to a nonprofit to a government agency by relabeling the difference — without touching anything else in the architecture — tells you how deep the design goes.</p>
 
   <hr class="divider">
 
   <h2>Why Impose a Constraint?</h2>
 
-  <p class="prose">Because it makes the system <strong>self-balancing</strong>. Every transaction must be recorded in a way that keeps the identity in balance. If cash goes up — an asset increases — then something else must change:</p>
+  <p class="prose">Because it makes the system <strong>self-balancing</strong>. Every transaction that enters the system must be recorded in a way that keeps the identity in balance. If the entity receives cash (an asset goes up), something else must change:</p>
 
   <div class="tx-list">
     <div class="tx-row">
@@ -480,15 +466,19 @@
     </div>
     <div class="tx-row">
       <div class="tx-num l">2</div>
-      <span>A <strong>liability goes up</strong> — borrowed the cash from a bank</span>
+      <span>A <strong>liability goes up</strong> — borrowed the cash</span>
     </div>
     <div class="tx-row">
       <div class="tx-num e">3</div>
-      <span><strong>Equities goes up</strong> — an owner contributed it, or the entity earned it</span>
+      <span><strong>Equities goes up</strong> — an owner contributed the cash, or the entity earned it</span>
     </div>
   </div>
 
-  <p class="prose">This is what double-entry bookkeeping enforces. Every recording touches at least two accounts, and the two sides must remain equal. When an error occurs, the imbalance itself is a signal — it tells you something is wrong <em>before</em> you know what went wrong. The identity also creates a reconciliation discipline: at any date, the left side (assets) must equal the right side (liabilities + equities). If they do not match, something was recorded incorrectly — and the system catches a wide class of errors automatically.</p>
+  <p class="prose">There is no transaction that affects only one side of the identity.</p>
+
+  <p class="prose">This is what double-entry bookkeeping enforces. Every recording touches at least two accounts, and the two sides must remain equal. The system cannot get out of balance unless someone makes an error — or deliberately circumvents it. And when an error does occur, the imbalance itself is a signal. It tells you something is wrong before you know what went wrong.</p>
+
+  <p class="prose">The identity also creates a reconciliation discipline. At any date, you should be able to add up everything on the left side (assets) and everything on the right side (liabilities plus equities) and get the same number. If they do not match, something was recorded incorrectly. This is not a trivial feature. It is a powerful auditing tool — not because it catches every error (it does not), but because it catches a wide class of them automatically.</p>
 
   <hr class="divider">
 
