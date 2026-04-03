@@ -64,10 +64,12 @@
   .flip-card {
     perspective: 1000px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
   }
   .flip-card-inner {
+    flex: 1;
     display: grid;
-    width: 100%;
     transition: transform 0.5s ease;
     transform-style: preserve-3d;
   }
@@ -645,20 +647,6 @@
 
 <script src="shared.js"></script>
 <script>
-// Equalize flip card heights to the tallest card
-function equalizeFlipCards() {
-  const cards = document.querySelectorAll('.flip-card');
-  cards.forEach(c => c.style.height = '');
-  let max = 0;
-  cards.forEach(c => max = Math.max(max, c.offsetHeight));
-  if (max > 0) cards.forEach(c => c.style.height = max + 'px');
-}
-document.addEventListener('DOMContentLoaded', function () {
-  requestAnimationFrame(function () {
-    requestAnimationFrame(equalizeFlipCards);
-  });
-});
-window.addEventListener('load', equalizeFlipCards);
 </script>
 <script>
 (function () {
