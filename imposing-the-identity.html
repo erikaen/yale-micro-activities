@@ -68,6 +68,7 @@
   .flip-card-inner {
     display: grid;
     width: 100%;
+    height: 100%;
     transition: transform 0.5s ease;
     transform-style: preserve-3d;
   }
@@ -644,6 +645,15 @@
 </div><!-- /activity-content -->
 
 <script src="shared.js"></script>
+<script>
+// Equalize flip card heights to the tallest card
+window.addEventListener('load', function () {
+  const cards = document.querySelectorAll('.flip-card');
+  let max = 0;
+  cards.forEach(c => max = Math.max(max, c.offsetHeight));
+  cards.forEach(c => c.style.height = max + 'px');
+});
+</script>
 <script>
 (function () {
   const ITEMS = [
