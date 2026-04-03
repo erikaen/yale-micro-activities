@@ -3,91 +3,711 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yale Micro Activity — Starter</title>
+<title>Imposing the Identity — Yale Micro Activity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<style>
+  html.micro-activity body { background: #e6e9f2; }
+
+  /* ===== EQUATION VISUAL ===== */
+  .eq-display {
+    background: white;
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin: 20px 0;
+    text-align: center;
+    border: 1px solid #dce4ee;
+  }
+  .eq-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 6px 0;
+  }
+  .eq-term {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 110px;
+  }
+  .eq-term.a { background: #dbeafe; color: #1e40af; border: 2px solid #93c5fd; }
+  .eq-term.l { background: #fee2e2; color: #991b1b; border: 2px solid #fca5a5; }
+  .eq-term.e { background: #dcfce7; color: #166534; border: 2px solid #86efac; }
+  .eq-op { font-size: 22px; font-weight: 700; color: #6b7280; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .eq-arrow { font-size: 20px; color: #9ca3af; margin: 6px 0; }
+  .eq-caption {
+    font-size: 12.5px;
+    color: #9ca3af;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ===== DEFINITION GRID ===== */
+  .def-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .def-grid { grid-template-columns: 1fr; } }
+
+  .def-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+  }
+  .def-card.a { border-top: 4px solid #3b82f6; }
+  .def-card.l { border-top: 4px solid #ef4444; }
+  .def-card.e { border-top: 4px solid #22c55e; }
+  .def-icon { font-size: 26px; margin-bottom: 10px; }
+  .def-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .def-card.a .def-title { color: #1e40af; }
+  .def-card.l .def-title { color: #991b1b; }
+  .def-card.e .def-title { color: #166534; }
+  .def-card p { font-size: 14px; line-height: 1.6; color: #374151; margin-bottom: 8px; }
+  .def-card p:last-child { margin-bottom: 0; }
+  .def-example {
+    font-size: 12.5px;
+    color: #6b7280;
+    font-style: italic;
+    background: #f9fafb;
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin-top: 8px;
+  }
+
+  /* ===== INSIGHT BOX ===== */
+  .insight-box {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+  }
+  .insight-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #b45309;
+    margin-bottom: 5px;
+  }
+  .insight-box p { font-size: 14.5px; color: #78350f; margin-bottom: 0; }
+
+  /* ===== ORG COMPARISON ===== */
+  .org-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 600px) { .org-compare { grid-template-columns: 1fr; } }
+
+  .org-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+  }
+  .org-type {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+  }
+  .org-name {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+  }
+  .org-eq { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .org-eq-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: center; }
+  .pill {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .pill.a { background: #dbeafe; color: #1e40af; }
+  .pill.l { background: #fee2e2; color: #991b1b; }
+  .pill.e { background: #dcfce7; color: #166534; }
+  .pill.na { background: #f3e8ff; color: #6b21a8; }
+  .pill-op { font-size: 16px; font-weight: 700; color: #6b7280; }
+  .org-badge {
+    display: inline-block;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #64748b;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin-top: 4px;
+  }
+
+  /* ===== TRANSACTION LIST ===== */
+  .tx-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .tx-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  .tx-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px;
+    flex-shrink: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .tx-num.a { background: #dbeafe; color: #1e40af; }
+  .tx-num.l { background: #fee2e2; color: #991b1b; }
+  .tx-num.e { background: #dcfce7; color: #166534; }
+
+  /* ===== DRAG AND DROP ===== */
+  .dnd-section { margin: 24px 0; }
+
+  .dnd-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px;
+    background: white;
+    border-radius: 10px;
+    border: 1px dashed #c9d3e0;
+    min-height: 72px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+  .dnd-bank-label {
+    width: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+  }
+
+  .dnd-card {
+    background: white;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-size: 13.5px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    cursor: grab;
+    user-select: none;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    color: #374151;
+    line-height: 1.4;
+  }
+  .dnd-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0,50,157,0.12);
+    transform: translateY(-1px);
+  }
+  .dnd-card.dragging { opacity: 0.35; cursor: grabbing; }
+  .dnd-card.selected {
+    border-color: var(--primary);
+    background: #eef2ff;
+    box-shadow: 0 0 0 3px rgba(0,50,157,0.14);
+  }
+  .dnd-card-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+
+  .dnd-zones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 640px) { .dnd-zones { grid-template-columns: 1fr; } }
+
+  .dnd-zone {
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 130px;
+    border: 2px dashed #d1d5db;
+    transition: all 0.15s;
+  }
+  .dnd-zone.z-assets  { border-color: #93c5fd; background: #f0f7ff; }
+  .dnd-zone.z-liab    { border-color: #fca5a5; background: #fff5f5; }
+  .dnd-zone.z-equity  { border-color: #86efac; background: #f0fdf4; }
+  .dnd-zone.over.z-assets  { background: #dbeafe; border-color: #3b82f6; transform: scale(1.02); }
+  .dnd-zone.over.z-liab    { background: #fee2e2; border-color: #ef4444; transform: scale(1.02); }
+  .dnd-zone.over.z-equity  { background: #dcfce7; border-color: #22c55e; transform: scale(1.02); }
+
+  .zone-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .dnd-zone.z-assets  .zone-title { color: #1e40af; }
+  .dnd-zone.z-liab    .zone-title { color: #991b1b; }
+  .dnd-zone.z-equity  .zone-title { color: #166534; }
+
+  .zone-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .zone-items { display: flex; flex-direction: column; gap: 6px; }
+
+  .placed-chip {
+    padding: 7px 11px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #166534;
+  }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    60% { transform: translateX(7px); }
+  }
+  .dnd-card.wrong { animation: shake 0.3s ease; border-color: #ef4444; }
+
+  /* progress */
+  .dnd-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .progress-bar { flex: 1; height: 5px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.3s ease; }
+
+  /* result */
+  .dnd-result {
+    display: none;
+    margin-top: 18px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .dnd-result.show { display: block; }
+  .dnd-result.done { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+  .result-score { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .result-msg { font-size: 14px; }
+
+  .btn-reset {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-reset:hover { background: var(--primary-faint); }
+</style>
 </head>
 <body>
 
-<!-- Identity bar at the top (optional — remove if not needed) -->
 <div class="identity-bar">
-  Yale Micro Activity — Title Here
+  Yale Micro Activity — Imposing the Identity
 </div>
 
 <div class="activity-content">
 
-  <!-- Section label + heading -->
-  <div class="section-label">Activity 1</div>
-  <h1>Activity Title</h1>
-  <p class="prose">Brief context or instructions for the learner go here.</p>
+  <div class="section-label">Accounting Foundations</div>
+  <h1>Imposing the Identity</h1>
 
-  <hr class="divider">
+  <p class="prose">The first move is to impose a structural constraint on the system. Not discover one. Not derive one from economic theory. <strong>Impose one</strong> — a deliberate design choice, made because of what it makes possible.</p>
 
-  <!-- Prompt box -->
-  <div class="prompt-box">
-    <div class="prompt-label">Question</div>
-    <p>Your question text goes here.</p>
+  <p class="prose">The constraint is the accounting identity. Most textbooks write it this way:</p>
+
+  <!-- EQUATION VISUAL -->
+  <div class="eq-display">
+    <div class="eq-row">
+      <span class="eq-term a">Assets</span>
+      <span class="eq-op">=</span>
+      <span class="eq-term l">Liabilities</span>
+      <span class="eq-op">+</span>
+      <span class="eq-term e">Equities</span>
+    </div>
+    <div class="eq-caption">Standard form — looks like three independent quantities that happen to balance</div>
+
+    <div class="eq-arrow">↕ same algebra</div>
+
+    <div class="eq-row">
+      <span class="eq-term a">Assets</span>
+      <span class="eq-op">−</span>
+      <span class="eq-term l">Liabilities</span>
+      <span class="eq-op">=</span>
+      <span class="eq-term e">Equities</span>
+    </div>
+    <div class="eq-caption">Rearranged form — reveals that equities is <em>derived</em>, not independent</div>
   </div>
 
-  <!-- Multiple-choice example -->
-  <ul class="choice-list" data-question>
-    <li><button class="choice-btn" onclick="selectChoice(this, false, '', 'Assets are resources held by the entity.')">Liabilities</button></li>
-    <li><button class="choice-btn" onclick="selectChoice(this, true, 'Correct! Assets are present rights to economic benefits.', '')">Assets</button></li>
-    <li><button class="choice-btn" onclick="selectChoice(this, false, '', 'Equities is the residual — assets minus liabilities.')">Equities</button></li>
-  </ul>
-  <div class="feedback"></div>
+  <p class="prose">Written the first way, it looks like three independent quantities that happen to balance — as though the identity were a surprising empirical fact, something you might test and find to be true. But the rearranged form reveals something the first form hides: <strong>equities is not an independent third quantity.</strong> It is the difference between assets and liabilities. Once you have recorded assets and liabilities, equities is determined. There is nothing else to decide.</p>
+
+  <div class="insight-box">
+    <div class="insight-label">Key Insight</div>
+    <p>The identity is a tautology — true by definition, not by coincidence. That is exactly what makes it so powerful as a structural constraint.</p>
+  </div>
 
   <hr class="divider">
 
-  <!-- Reveal / show-answer example -->
-  <div data-reveal>
-    <p class="prose">What does accrual accounting decouple?</p>
-    <button class="reveal-btn" onclick="toggleReveal(this)">Show answer</button>
-    <div class="reveal-content">
-      Accrual accounting decouples <strong>recognition from cash movement</strong>: revenue is
-      recognized when earned, not when collected; expenses when incurred, not when paid.
+  <h2>What Each Term Means</h2>
+
+  <div class="def-grid">
+    <div class="def-card a">
+      <div class="def-icon">🏦</div>
+      <div class="def-title">Assets</div>
+      <p>Present <strong>rights</strong> to economic benefits. Not physical things — rights.</p>
+      <p>A building is an asset because the entity holds the right to use, rent, or sell it. No future benefit — no asset.</p>
+      <div class="def-example">Cash · A building · A receivable (right to collect cash)</div>
+    </div>
+    <div class="def-card l">
+      <div class="def-icon">📋</div>
+      <div class="def-title">Liabilities</div>
+      <p>Present <strong>obligations</strong> to transfer economic benefits. The entity owes something it cannot avoid.</p>
+      <p>The obligation must be compelling — not optional, not merely possible, but required.</p>
+      <div class="def-example">A bank loan · Unpaid wages · Goods received but not paid for</div>
+    </div>
+    <div class="def-card e">
+      <div class="def-icon">⚖️</div>
+      <div class="def-title">Equities / Net Assets</div>
+      <p>The <strong>derived difference</strong>: assets minus liabilities. Not an independent concept.</p>
+      <p>Change conventions for recording assets or liabilities, and equities changes — not because anything happened to the owners.</p>
+      <div class="def-example">Owners' residual claim · Net assets (universities, hospitals)</div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- Accordion example -->
-  <div class="accordion">
-    <div class="accordion-section">
-      <button class="accordion-trigger" onclick="toggleAccordion(this)">
-        <span class="section-num">1</span>
-        Key concept
-        <span class="chevron">&#9654;</span>
-      </button>
-      <div class="accordion-body">
-        <p>Explanation of the concept goes here. Keep it concise — this is a micro activity.</p>
+  <h2>The Architecture Transfers</h2>
+
+  <p class="prose">Now consider what happens when the entity has no owners at all. A university, a hospital, a charitable foundation — these have assets and liabilities, but no shareholders. Does the identity break? No. Assets minus liabilities is still a difference. You just call it <strong>net assets</strong> instead of equities. The architecture does not change. Only the label does.</p>
+
+  <div class="org-compare">
+    <div class="org-card">
+      <div class="org-type">For-Profit</div>
+      <div class="org-name">Corporation</div>
+      <div class="org-eq">
+        <div class="org-eq-row">
+          <span class="pill a">Assets</span>
+          <span class="pill-op">−</span>
+          <span class="pill l">Liabilities</span>
+          <span class="pill-op">=</span>
+          <span class="pill e">Equities</span>
+        </div>
+        <span class="org-badge">Owners' residual interest</span>
       </div>
     </div>
-    <div class="accordion-section">
-      <button class="accordion-trigger" onclick="toggleAccordion(this)">
-        <span class="section-num">2</span>
-        Another concept
-        <span class="chevron">&#9654;</span>
-      </button>
-      <div class="accordion-body">
-        <p>Explanation of the second concept goes here.</p>
+    <div class="org-card">
+      <div class="org-type">Nonprofit</div>
+      <div class="org-name">University · Hospital · Foundation</div>
+      <div class="org-eq">
+        <div class="org-eq-row">
+          <span class="pill a">Assets</span>
+          <span class="pill-op">−</span>
+          <span class="pill l">Liabilities</span>
+          <span class="pill-op">=</span>
+          <span class="pill na">Net Assets</span>
+        </div>
+        <span class="org-badge">Same arithmetic — different label</span>
       </div>
     </div>
   </div>
 
-  <!-- Info box -->
-  <div class="info-box">
-    <h3>Note</h3>
-    <p>Use info boxes for definitions, reminders, or supplementary context that supports the activity.</p>
+  <p class="prose">This is one of the strongest pieces of evidence that the identity is a genuinely powerful design choice. It is not specific to for-profit companies. It is not built around ownership. Moving from a corporation to a nonprofit only requires relabeling the difference — without touching anything else in the architecture.</p>
+
+  <hr class="divider">
+
+  <h2>Why Impose a Constraint?</h2>
+
+  <p class="prose">Because it makes the system <strong>self-balancing</strong>. Every transaction must be recorded in a way that keeps the identity in balance. If cash goes up — an asset increases — then something else must change:</p>
+
+  <div class="tx-list">
+    <div class="tx-row">
+      <div class="tx-num a">1</div>
+      <span>Another <strong>asset goes down</strong> — spent cash to buy equipment</span>
+    </div>
+    <div class="tx-row">
+      <div class="tx-num l">2</div>
+      <span>A <strong>liability goes up</strong> — borrowed the cash from a bank</span>
+    </div>
+    <div class="tx-row">
+      <div class="tx-num e">3</div>
+      <span><strong>Equities goes up</strong> — an owner contributed it, or the entity earned it</span>
+    </div>
+  </div>
+
+  <p class="prose">This is what double-entry bookkeeping enforces. Every recording touches at least two accounts, and the two sides must remain equal. When an error occurs, the imbalance itself is a signal — it tells you something is wrong <em>before</em> you know what went wrong. The identity also creates a reconciliation discipline: at any date, the left side (assets) must equal the right side (liabilities + equities). If they do not match, something was recorded incorrectly — and the system catches a wide class of errors automatically.</p>
+
+  <hr class="divider">
+
+  <!-- ===== MICRO ACTIVITY ===== -->
+  <div class="section-label">Activity</div>
+  <h2>Classify These Items</h2>
+  <p class="prose">Drag each item into the correct category — or tap an item, then tap a zone. Use the definitions above to guide you.</p>
+
+  <div class="dnd-section" id="dndActivity">
+
+    <div class="dnd-progress">
+      <span id="progressText">0 of 8 placed correctly</span>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Items bank -->
+    <div class="dnd-bank" id="itemsBank">
+      <div class="dnd-bank-label">Items to classify</div>
+
+      <div class="dnd-card" draggable="true" id="c1" data-answer="assets">
+        <div>Cash in the bank</div>
+        <div class="dnd-card-sub">Right to acquire other things</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c2" data-answer="assets">
+        <div>A factory the company owns</div>
+        <div class="dnd-card-sub">Right to use, rent, or sell it</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c3" data-answer="assets">
+        <div>Receivable from a customer</div>
+        <div class="dnd-card-sub">Right to collect future cash</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c4" data-answer="liab">
+        <div>A bank loan</div>
+        <div class="dnd-card-sub">Obligated to repay</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c5" data-answer="liab">
+        <div>Wages earned but not yet paid</div>
+        <div class="dnd-card-sub">Employees are owed this</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c6" data-answer="liab">
+        <div>Goods received, not yet paid for</div>
+        <div class="dnd-card-sub">Accounts payable</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c7" data-answer="equity">
+        <div>Owners' residual claim</div>
+        <div class="dnd-card-sub">After all obligations are settled</div>
+      </div>
+      <div class="dnd-card" draggable="true" id="c8" data-answer="equity">
+        <div>Net assets of a university</div>
+        <div class="dnd-card-sub">Assets minus liabilities, no shareholders</div>
+      </div>
+    </div>
+
+    <!-- Drop zones -->
+    <div class="dnd-zones">
+      <div class="dnd-zone z-assets" id="zone-assets" data-zone="assets">
+        <div class="zone-title">Assets</div>
+        <div class="zone-hint">Present rights to economic benefits</div>
+        <div class="zone-items" id="items-assets"></div>
+      </div>
+      <div class="dnd-zone z-liab" id="zone-liab" data-zone="liab">
+        <div class="zone-title">Liabilities</div>
+        <div class="zone-hint">Present obligations to transfer benefits</div>
+        <div class="zone-items" id="items-liab"></div>
+      </div>
+      <div class="dnd-zone z-equity" id="zone-equity" data-zone="equity">
+        <div class="zone-title">Equities / Net Assets</div>
+        <div class="zone-hint">The derived difference</div>
+        <div class="zone-items" id="items-equity"></div>
+      </div>
+    </div>
+
+    <div class="dnd-result" id="dndResult">
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-msg" id="resultMsg"></div>
+      <button class="btn-reset" onclick="resetActivity()">↺ Reset</button>
+    </div>
+
   </div>
 
 </div><!-- /activity-content -->
 
 <script src="shared.js"></script>
 <script>
-  initAccordions(false);
+(function () {
+  const ITEMS = [
+    { id: 'c1', label: 'Cash in the bank',               answer: 'assets' },
+    { id: 'c2', label: 'A factory the company owns',     answer: 'assets' },
+    { id: 'c3', label: 'Receivable from a customer',     answer: 'assets' },
+    { id: 'c4', label: 'A bank loan',                    answer: 'liab'   },
+    { id: 'c5', label: 'Wages earned but not yet paid',  answer: 'liab'   },
+    { id: 'c6', label: 'Goods received, not yet paid for', answer: 'liab' },
+    { id: 'c7', label: "Owners' residual claim",         answer: 'equity' },
+    { id: 'c8', label: 'Net assets of a university',     answer: 'equity' },
+  ];
+
+  let selected = null;
+  let placed = 0;
+
+  function getCard(id) { return document.getElementById(id); }
+
+  // ── Drag events ──────────────────────────────────────────────
+  document.querySelectorAll('.dnd-card').forEach(attachCard);
+
+  function attachCard(card) {
+    card.addEventListener('dragstart', e => {
+      card.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', card.id);
+    });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+    card.addEventListener('click', () => {
+      if (card.dataset.done) return;
+      if (selected === card) {
+        card.classList.remove('selected');
+        selected = null;
+        return;
+      }
+      if (selected) selected.classList.remove('selected');
+      selected = card;
+      card.classList.add('selected');
+    });
+  }
+
+  document.querySelectorAll('.dnd-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('over');
+      const id = e.dataTransfer.getData('text/plain');
+      tryPlace(document.getElementById(id), zone);
+    });
+    zone.addEventListener('click', () => {
+      if (selected) {
+        tryPlace(selected, zone);
+        selected.classList.remove('selected');
+        selected = null;
+      }
+    });
+  });
+
+  // ── Core placement logic ─────────────────────────────────────
+  function tryPlace(card, zone) {
+    if (!card || card.dataset.done) return;
+    const correct = card.dataset.answer === zone.dataset.zone;
+
+    if (correct) {
+      card.dataset.done = '1';
+      card.remove();
+
+      const chip = document.createElement('div');
+      chip.className = 'placed-chip';
+      chip.textContent = ITEMS.find(i => i.id === card.id).label;
+      zone.querySelector('.zone-items').appendChild(chip);
+
+      placed++;
+      updateProgress();
+      if (placed === ITEMS.length) showResult();
+    } else {
+      card.classList.add('wrong');
+      setTimeout(() => card.classList.remove('wrong'), 350);
+    }
+  }
+
+  function updateProgress() {
+    const pct = (placed / ITEMS.length) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent =
+      placed + ' of ' + ITEMS.length + ' placed correctly';
+  }
+
+  function showResult() {
+    const el = document.getElementById('dndResult');
+    el.className = 'dnd-result show done';
+    document.getElementById('resultScore').textContent = 'All 8 items correctly classified!';
+    document.getElementById('resultMsg').textContent =
+      'You can distinguish rights (assets) from obligations (liabilities) and understand that equities is the derived difference — not an independent quantity.';
+  }
+
+  // ── Reset ────────────────────────────────────────────────────
+  window.resetActivity = function () {
+    placed = 0;
+    selected = null;
+
+    const bank = document.getElementById('itemsBank');
+    // Clear zone items
+    ['assets', 'liab', 'equity'].forEach(z => {
+      document.getElementById('items-' + z).innerHTML = '';
+    });
+
+    // Rebuild cards
+    bank.querySelectorAll('.dnd-card').forEach(c => c.remove());
+    ITEMS.forEach(data => {
+      const orig = document.getElementById(data.id);
+      // card was removed from DOM; recreate
+      const card = document.createElement('div');
+      card.className = 'dnd-card';
+      card.draggable = true;
+      card.id = data.id;
+      card.dataset.answer = data.answer;
+      const sub = data.id === 'c1' ? 'Right to acquire other things'
+                : data.id === 'c2' ? 'Right to use, rent, or sell it'
+                : data.id === 'c3' ? 'Right to collect future cash'
+                : data.id === 'c4' ? 'Obligated to repay'
+                : data.id === 'c5' ? 'Employees are owed this'
+                : data.id === 'c6' ? 'Accounts payable'
+                : data.id === 'c7' ? 'After all obligations are settled'
+                : 'Assets minus liabilities, no shareholders';
+      card.innerHTML = '<div>' + data.label + '</div><div class="dnd-card-sub">' + sub + '</div>';
+      attachCard(card);
+      bank.appendChild(card);
+    });
+
+    document.getElementById('dndResult').className = 'dnd-result';
+    updateProgress();
+  };
+})();
 </script>
 </body>
 </html>
